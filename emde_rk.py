@@ -24,7 +24,7 @@ streamlit.sidebar.markdown('EMDE parameters:\n')
 streamlit.sidebar.markdown('$T_{RH}$ in GeV')
 Trh = streamlit.sidebar.number_input('',min_value=0.01)
 streamlit.sidebar.markdown(r'$$\eta$$: The ratio of SM to Y particle density at initial time')
-eta = streamlit.sidebar.number_input('',min_value=0.001,value=5.0)
+eta = streamlit.sidebar.number_input('',min_value=1e-6,value=5.0,step=1e-6)
 streamlit.sidebar.markdown('$$k_{MD} / k_{RH}$$: This is $k_{dom} / k_{RH}$ if $\eta>1$, else $k_y/k_{RH}$')
 k_emde = streamlit.sidebar.number_input('',min_value=5,value=100)
 streamlit.sidebar.markdown('Y Particle Statistics')
@@ -103,8 +103,7 @@ keq = 0.073 * OmegaM * h * h # 1 / Mpc
 krh = arh_r(Trh) * H_RD(Trh) * GeV_in_Mpc_inv # 1/Mpc
 
 xdec = krh/keq
-x = k/keq
-y = k/krh
+
 
 
 Step = lambda y: .5*(np.tanh(.5*y)+1)
@@ -128,7 +127,9 @@ if eta > 1:
     from smd_cutfuncs import ky,kc,tk_ss
     
     kcut = kc(kd_krh,eta,b)
-    k = np.logspace(-3,np.log10(10*kcut*krh),1000)
+    k = np.logspace(-3,np.log10(1000*kcut*krh),10000)
+    x = k/keq
+    y = k/krh
     tk = np.where(x<0.05*xdec,1,Rt(xdec,x)) 
     q = (k/krh)/(kd_krh)
     tk = tk * np.log(1 + 0.22*q) * np.power(1 + 1.11*q + (0.94*q)**2 + (0.63*q)**3 + (0.45*q)**4,-0.25) / (0.22*q)
@@ -139,7 +140,9 @@ if eta < 1:
     from yd_cutfuncs import npred_yd,kc,tk_ss
     
     kcut = kc(ky_krh,eta,b)
-    k = np.logspace(-3,np.log10(10*kcut*krh),1000)
+    k = np.logspace(-3,np.log10(1000*kcut*krh),10000)
+    x = k/keq
+    y = k/krh
     tk = np.where(x<0.05*xdec,1,Rt(xdec,x)) 
     tk = tk * tk_ss(y,ky_krh,eta,b)
     
@@ -148,7 +151,7 @@ if eta < 1:
     
 
 fig,ax = plt.subplots(dpi=300) 
-ax.loglog(k,tk)
+ax.loglog(k,tk,lw=3)
 plt.ylim(1e-2,2*tk.max()) 
 plt.xlim(k[0],2*k[np.where(tk>1e-2)[0][-1]])
 plt.xlabel(r'k [Mpc$^{-1}$]')
@@ -158,7 +161,7 @@ plt.title('EMD Transfer Function')
 df = pd.DataFrame([k,tk]).transpose()
 df.columns = ['k','R(k)']
 
-streamlit.download_button('Download as CSV',data=df.to_csv(index=False),file_name='emde_tk.csv')
+#streamlit.download_button('Download as CSV',data=df.to_csv(index=False),file_name='emde_tk.csv')
 
 streamlit.pyplot(fig)
 
