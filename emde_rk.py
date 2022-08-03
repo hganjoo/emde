@@ -161,7 +161,7 @@ plt.title('EMD Transfer Function')
 df = pd.DataFrame([k,tk]).transpose()
 df.columns = ['k','R(k)']
 
-#streamlit.download_button('Download as CSV',data=df.to_csv(index=False),file_name='emde_tk.csv')
+streamlit.download_button('Download as CSV',data=df.to_csv(index=False),file_name='emde_tk.csv')
 
 streamlit.pyplot(fig)
 
