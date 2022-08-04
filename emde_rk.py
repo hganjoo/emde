@@ -14,7 +14,7 @@ import sys as ss
 
 streamlit.header('Early Matter-Dominated Era Transfer Functions')
 
-streamlit.write('This page provides transfer functions for the matter power spectrum after a period of early matter domination (EMD) caused by the Y particle.\nMultiply this transfer function with your favorite base power spectrum to generate a power spectrum that includes the effects of the EMD and the small-scale cut-off due to the relativistic pressure of the Y particles in the early Universe.')
+streamlit.write('This page provides transfer functions for the matter power spectrum after a period of early matter domination (EMD) caused by a long-lived hidden sector particle (Y) that is initially relativistic.\nMultiply this transfer function with your favorite base power spectrum to generate a power spectrum that includes the effects of the EMD and the small-scale cut-off due to the relativistic pressure of the Y particles in the early Universe.')
 
 
 
