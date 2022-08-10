@@ -112,11 +112,15 @@ Bfit = lambda y: np.exp(np.log(0.594)*Step(5.02 - y) + np.log(np.e/y**2)*Step(y 
 aeqOVERahor = lambda x,y: x*np.sqrt(2)*(1 + y**4.235)**(1/4.235)
   
 
-fb = OmegaB/OmegaM
-f1 = 1 - 0.568*fb + 0.094*fb**2
-f2 = 1 - 1.156*fb + 0.149*fb**2 - 0.074*fb**3
+#fb = OmegaB/OmegaM
+#f1 = 1 - 0.568*fb + 0.094*fb**2
+#f2 = 1 - 1.156*fb + 0.149*fb**2 - 0.074*fb**3
+#f2_over_f1 = f2/f1
 
-f2_over_f1 = f2/f1
+a1 = (1-(1+24*OmegaC/OmegaM)**.5)/4.
+a2 = (1+(1+24*OmegaC/OmegaM)**.5)/4.
+B = 2*digamma(1)-digamma(a2)-digamma(a2+.5)
+f2_over_f1 = B/np.log(4/np.e**3)
 
 def Rt(xdec,x):
     return (Afit(x/(xdec))*np.log((4/np.exp(3))**f2_over_f1*Bfit(x/(xdec))*aeqOVERahor(x, x/(xdec))))/(9.11*np.log((4/np.exp(3))**f2_over_f1*0.594*x*np.sqrt(2)))
