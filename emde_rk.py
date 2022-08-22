@@ -171,7 +171,7 @@ streamlit.pyplot(fig)
 
 streamlit.write('EMDE transfer functions taken from Erickcek and Sigurdson 2011 (https://arxiv.org/abs/1106.0536).')
 
-streamlit.write('Basic code implementing 2011 transfer functions by M. Sten Delos. Modified by Himanish Ganjoo.')
+streamlit.write('Basic code implementing 2011 transfer functions by Adrienne Erickcek and M. Sten Delos. Modified by Himanish Ganjoo.')
 
 streamlit.write('Modifications for initial radiation domination and cut-off scale from Ganjoo et al (). Check paper for parameter definitions.')
 
