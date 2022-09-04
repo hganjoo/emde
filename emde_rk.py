@@ -48,7 +48,7 @@ else:
 
 pi = np.pi
 
-def arh_r(T): return (1/1.02) * np.power(gstar(T0)/gstar(0.34*T),1./3) * (T0/T)
+def arh_r(T): return (1/1.02) * np.power(3.91/gstar(0.204*T),1./3) * (T0/T)
 
 def H_RD(T): return np.sqrt((8*pi*pi*pi/90)*gstar(T))*T*T/mpl
 
