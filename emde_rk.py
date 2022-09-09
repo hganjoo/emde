@@ -173,7 +173,7 @@ streamlit.write('EMDE transfer functions taken from Erickcek and Sigurdson 2011 
 
 streamlit.write('Basic code implementing 2011 transfer functions by Adrienne Erickcek and M. Sten Delos. Modified by Himanish Ganjoo.')
 
-streamlit.write('Modifications for initial radiation domination and cut-off scale from Ganjoo et al (). Check paper for parameter definitions.')
+streamlit.write('Modifications for initial radiation domination and cut-off scale from Ganjoo et al (https://arxiv.org/abs/2209.02735). Check paper for parameter definitions.')
 
 
    
