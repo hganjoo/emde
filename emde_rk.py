@@ -134,7 +134,7 @@ if eta > 1:
     k = np.logspace(-3,np.log10(1000*kcut*krh),10000)
     x = k/keq
     y = k/krh
-    tk = np.where(x<0.05*xdec,1,Rt(xdec,x)) 
+    tk = np.where(x<0.05*0.86*xdec,1,Rt(0.86*xdec,x)) 
     q = (k/krh)/(kd_krh)
     tk = tk * np.log(1 + 0.22*q) * np.power(1 + 1.11*q + (0.94*q)**2 + (0.63*q)**3 + (0.45*q)**4,-0.25) / (0.22*q)
     tk = tk * tk_ss(y,kd_krh,eta,b)
@@ -147,7 +147,7 @@ if eta < 1:
     k = np.logspace(-3,np.log10(1000*kcut*krh),10000)
     x = k/keq
     y = k/krh
-    tk = np.where(x<0.05*xdec,1,Rt(xdec,x)) 
+    tk = np.where(x<0.05*0.86*xdec,1,Rt(0.86*xdec,x)) 
     tk = tk * tk_ss(y,ky_krh,eta,b)
     
   
